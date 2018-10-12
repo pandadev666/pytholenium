@@ -1,12 +1,12 @@
 import unittest
 import pytholenium as pl
 from selenium import webdriver
+import os
 
 class TestPytholenium(unittest.TestCase):
-
-    #Define you web driver path and the test.html path
-    webdriver_path = r'C:\your\chromedriver\path'
-    webpage_path = r'C:your\test.html\path'
+    
+    webdriver_path = os.path.dirname(os.path.realpath(__file__)) + r'\test_data\chromedriver_v2.42.exe'
+    webpage_path = os.path.dirname(os.path.realpath(__file__)) + r'\test_data\test.html'
     driver = webdriver.Chrome(webdriver_path)
     driver.get(webpage_path)
 
