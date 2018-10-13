@@ -8,7 +8,7 @@ class TestPytholenium(unittest.TestCase):
     webpage_path = os.path.dirname(os.path.realpath(__file__)) + r'/test_data/test.html'
 
     options = webdriver.ChromeOptions()
-    options.binary_location = '/usr/bin/chromium-browser'
+    options.binary_location = '/usr/bin/google-chrome'
     options.add_argument("--no-sandbox")
     options.add_argument("--no-default-browser-check")
     options.add_argument("--no-first-run")
