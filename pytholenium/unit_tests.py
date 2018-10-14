@@ -5,7 +5,7 @@ import os
 
 class TestPytholenium(unittest.TestCase):
     webdriver_path = os.path.dirname(os.path.realpath(__file__)) + r'/test_data/chromedriver'
-    webpage_path = os.path.dirname(os.path.realpath(__file__)) + r'/test_data/test.html'
+    webpage_path = "file://" + os.path.dirname(os.path.realpath(__file__)) + r'/test_data/test.html'
 
     options = webdriver.ChromeOptions()
     options.binary_location = '/usr/bin/google-chrome'
