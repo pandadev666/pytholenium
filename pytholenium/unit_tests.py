@@ -5,8 +5,8 @@ import os
 
 class TestPytholenium(unittest.TestCase):
     
-    webdriver_path = os.path.dirname(os.path.realpath(__file__)) + r'\test_data\chromedriver_v2.42.exe'
-    webpage_path = os.path.dirname(os.path.realpath(__file__)) + r'\test_data\test.html'
+    webdriver_path = os.path.dirname(os.path.realpath(__file__)) + r'/test_data/chromedriver_v2.42.exe'
+    webpage_path = os.path.dirname(os.path.realpath(__file__)) + r'/test_data/test.html'
     driver = webdriver.Chrome(webdriver_path)
     driver.get(webpage_path)
 
