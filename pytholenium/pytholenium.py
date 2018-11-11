@@ -7,6 +7,8 @@
 # Parameters:
 # - driver [selenium] : Selenium driver
 # - params [dict] : A dict that contains elements to search the element for
+# Returns:
+# - element [WebElement] : A single WebElement found
 def get(driver, params):
     elements = gets(driver=driver, params=params)
     if len(elements) > 1:
@@ -21,6 +23,8 @@ def get(driver, params):
 # Parameters:
 # - driver [selenium] : Selenium driver
 # - params [dict] : A dict that contains elements to search the element for
+# Returns:
+# - elements [list of WebElements] : A list of WebElements found
 def gets(driver, params):
     by_element, by_attribute = filter_params(params)
     if len(by_element) > 1:
@@ -34,13 +38,33 @@ def gets(driver, params):
     return elements
 
 
+# Function: wait
+# What does it do: Set an implicitly wait, by default 10secs, and wait for the element
+# Parameters:
+# - driver [selenium] : Selenium driver
+# - params [dict] : A dict that contains elements to search the element for
+# - timeout [int] : Maximun time to wait for the element
+# Returns:
+# - element [WebElement] : A single WebElement found
+def wait(driver, params, timeout=10):
+    driver.implicitly_wait(timeout)
+    return get(driver=driver, params=params)
 
-def wait():
-    print("TODO")
 
-
-def do():
-    print("TODO")
+# Function: do
+# What does it do: Makes an action on an element
+# Parameters:
+# - driver [selenium] : Selenium driver
+# - params [dict] : A dict that contains elements to search the element for
+# - action [string] : Action to perform
+# - value [string] : Value to input on fields
+def do(driver, params, action):
+    element = get(driver, params)
+    available_actions={
+        "click": click(element)
+    }
+    if not available_actions.get(action, False):
+        raise Warning('#pytholenium-Error004#. Action ' + action + ' is not an available action')
 
 
 def wait_do():
@@ -74,6 +98,7 @@ def filter_params(params):
         del params[key]
     return by_element, by_attribute
 
+
 # Function: get_elements
 # What does it do: Get elements using Selenium
 # Parameters:
@@ -96,6 +121,7 @@ def get_elements(driver, params):
         return driver.find_elements_by_class_name(params.get("class_name"))
     elif params.get("css_selector"):
         return driver.find_elements_by_css_selector(params.get("css_selector"))
+
 
 # Function: get_attributes
 # What does it do: Get elements using element's attributes
@@ -127,3 +153,12 @@ def get_attributes(elements, params):
             del params_tmp[key]
         params_tmp = params.copy()
     return ret_items
+
+
+# Function: Every action on Web Elements
+# What does it do: Implements the actions over the Web Elements
+# Parameters:
+# - element [WebElement] : A WebElement
+# - value [string] : Value to input on fields
+def click(element):
+    element.click()
