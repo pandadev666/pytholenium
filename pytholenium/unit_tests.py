@@ -47,11 +47,33 @@ class TestPytholenium(unittest.TestCase):
         text = pl.get(driver, params).text
         self.assertEqual(text, "To validate everything is working")
 
+
     #TC5 - Get element by partial link_text
     def test_TC5 (self, driver=driver):
         params = {"partial_link_text": "You can just"}
         text = pl.get(driver, params).text
         self.assertEqual(text, "You can just ignore this")
+
+
+    #TC6 - Get element by tag_name
+    def test_TC6 (self, driver=driver):
+        params = {"tag_name": "sometag"}
+        text = pl.get(driver, params).text
+        self.assertEqual(text, "Ok?")
+
+
+    #TC7 - Get element by class_name
+    def test_TC7 (self, driver=driver):
+        params = {"class_name": "someclass"}
+        text = pl.get(driver, params).text
+        self.assertEqual(text, "You still reading this?")
+
+
+    #TC8 - Get element by class_name
+    def test_TC8 (self, driver=driver):
+        params = {"css_selector": "div#someidforcss"}
+        text = pl.get(driver, params).text
+        self.assertEqual(text, "Nothing better to do eh?")
 
 
 if __name__ == '__main__':

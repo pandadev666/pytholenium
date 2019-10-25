@@ -64,7 +64,7 @@ def do(driver, params, action):
         "click": click(element)
     }
     if not available_actions.get(action, False):
-        raise Warning('#pytholenium-Error004#. Action ' + action + ' is not an available action')
+        raise Warning('#pytholenium-Error004#. Action "' + action + '" is not an available action')
 
 
 def wait_do():
