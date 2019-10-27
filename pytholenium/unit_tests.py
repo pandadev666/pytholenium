@@ -2,6 +2,7 @@ import unittest
 import pytholenium as pl
 from selenium import webdriver
 import os
+import time
 
 class TestPytholenium(unittest.TestCase):
     #Chromedriver and webpage paths in Travis-CI
@@ -74,6 +75,15 @@ class TestPytholenium(unittest.TestCase):
         params = {"css_selector": "div#someidforcss"}
         text = pl.get(driver, params).text
         self.assertEqual(text, "Nothing better to do eh?")
+
+
+    #TC9 - Click button with hardcoded wait time
+    def test_TC9 (self, driver=driver):
+        params = {"id": "buttonTC9"}
+        pl.do(driver=driver, params=params, action="click")
+        time.sleep(2) #Element will popup in 1 second, hardcoded double wait time
+        text = pl.get(driver=driver, params={"id": "tc9_text"}).text
+        self.assertEqual(text, "Thanks!")
 
 
 if __name__ == '__main__':

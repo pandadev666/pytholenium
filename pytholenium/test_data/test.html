@@ -21,3 +21,28 @@
 
 <!-- TC 8 -->
 <div id=someidforcss>Nothing better to do eh?</div>
+
+<!-- TC 9 -->
+<p id="tc9_text"></p>
+<button id="buttonTC9" type="button" onclick=my_func()>
+Click me :)
+</button>
+
+
+
+
+
+
+
+
+<script>
+	// Function to emulate wait times
+	function sleep(ms){
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+	// TC 9 - Waits for 1 second to display the Thanks! message after clicking
+	async function my_func(){
+		await sleep(1000);
+		document.getElementById('tc9_text').innerHTML = 'Thanks!';
+	}
+</script>

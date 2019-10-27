@@ -58,19 +58,37 @@ def wait(driver, params, timeout=10):
 # - params [dict] : A dict that contains elements to search the element for
 # - action [string] : Action to perform
 # - value [string] : Value to input on fields
-def do(driver, params, action):
+def do(driver, params, action, value=None):
     element = get(driver, params)
+    perform_dict = {"element": element, "value": value}
     available_actions={
-        "click": click(element)
+        "click": click,
+        "send_keys": send_keys,
+        "send_enter": send_enter,
+        "send_tab": send_tab,
+        "check": check,
+        "un_check": un_check,
+        "submit": submit
     }
-    if not available_actions.get(action, False):
+    perform = available_actions.get(action, None)
+    if perform is None:
         raise Warning('#pytholenium-Error004#. Action "' + action + '" is not an available action')
+    status, output = perform(perform_dict)
+    if not status:
+        raise Warning('#pytholenium-Error005#. When performing action: "' + action + '" - ' + output)
 
 
-def wait_do():
-    print("TODO")
-
-
+# Function: wait_do
+# What does it do: Perform wait and do actions
+# Parameters:
+# - driver [selenium] : Selenium driver
+# - params [dict] : A dict that contains elements to search the element for
+# - action [string] : Action to perform
+# - value [string] : Value to input on fields
+# - timeout [int] : Maximun time to wait for the element
+def wait_do(driver, params, action, value=None, timeout=10):
+    wait(driver=driver, params=params, timeout=timeout)
+    do(driver=driver, params=params, action=action, value=value)
 
 
 
@@ -158,7 +176,41 @@ def get_attributes(elements, params):
 # Function: Every action on Web Elements
 # What does it do: Implements the actions over the Web Elements
 # Parameters:
-# - element [WebElement] : A WebElement
-# - value [string] : Value to input on fields
-def click(element):
-    element.click()
+# - perform_dict [Dict] : A Dict that contains any of the following parameters
+    # - element [WebElement] : A WebElement
+    # - value [string] : Value to input on fields
+# Returns: 
+# - status [bool] - Defines if the action was performed successful
+# - output [string] - Error message
+def click(perform_dict):
+    perform_dict.get("element").click()
+    return True, None
+
+def send_keys(perform_dict):
+    perform_dict.get("element").clear()
+    perform_dict.get("element").send_keys(perform_dict.get("value"))
+    return True, None
+
+def send_enter(perform_dict):
+    perform_dict.get("element").send_keys(Keys.RETURN)
+    return True, None
+
+def send_tab(perform_dict):
+    perform_dict.get("element").send_keys(Keys.TAB)
+    return True, None
+
+def check(perform_dict):
+    if not perform_dict.get("element").is_selected():
+        perform_dict.get("element").click()
+        return True, None
+    return False, "Element specified is already checked"
+
+def un_check(perform_dict):
+    if perform_dict.get("element").is_selected():
+        perform_dict.get("element").click()
+        return True, None
+    return False, "Element specified is already unchecked"
+
+def submit(perform_dict):
+    perform_dict.get("element").submit()
+    return True, None
