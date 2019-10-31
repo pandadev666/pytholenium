@@ -12,9 +12,9 @@
 def get(driver, params):
     elements = gets(driver=driver, params=params)
     if len(elements) > 1:
-        raise Warning('#pytholenium-Error002#. Found more than 1 element. %s elements were found' % str(len(elements)))
+        raise Warning('#pytholenium-Error002#. Searching with: ' + str(params) + '. Found more than 1 element. %s elements were found' % str(len(elements)))
     elif len(elements) == 0:
-        raise Warning('#pytholenium-Error003#. No elements were found')
+        raise Warning('#pytholenium-Error003#. Searching with: ' + str(params) + '. No elements were found')
     return elements[0]
 
 
@@ -104,6 +104,7 @@ def wait_do(driver, params, action, value=None, timeout=10):
 # - by_element [dict] : A dict that contains Selenium filters
 # - by_attribute [dict] : A dict that contains attributes filters
 def filter_params(params):
+    params = params.copy()
     by_element_list = ["id", "name", "xpath", "link_text", "partial_link_text", "tag_name", "class_name", "css_selector"]
     by_element = {}
     by_attribute = {}
@@ -148,28 +149,33 @@ def get_elements(driver, params):
 # - params [dict] : A dict that contains elements to search the element for
 def get_attributes(elements, params):
     params_tmp = params.copy()
-    found = True
+    elements_tmp = elements.copy()
+    found = False
     ret_items = []
-    for item in elements:
-        while len(params_tmp) > 0:
+    while len(params_tmp) > 0:
+        for item in elements_tmp:
             key = next(iter(params_tmp))
             #Compare text value attribute
             if key == "text":
-                if item.text != params_tmp.get("text"):
-                    found = False
+                if item.text == params_tmp.get("text"):
+                    found = True
             #Compare tag name attribute
             elif key == "tag_name_attribute":
-                if item.tag_name != params_tmp.get("tag_name_attribute"):
-                    found = False
+                if item.tag_name == params_tmp.get("tag_name_attribute"):
+                    found = True
             #Compare generic attributes
             else:
-                if item.get_attribute(key) != params_tmp.get(key):
-                    found = False
+                if item.get_attribute(key) == params_tmp.get(key):
+                    found = True
             if found:
                 ret_items.append(item)
-            found = True
-            del params_tmp[key]
-        params_tmp = params.copy()
+            found = False
+        #Delete the used attribute filter
+        del params_tmp[key]
+        #If some attribute matched, now we iterate inside ret_items for upcoming attributes filters
+        if len(ret_items) > 0 and len(params_tmp) > 0:
+            elements_tmp = ret_items
+            ret_items = []
     return ret_items
 
 

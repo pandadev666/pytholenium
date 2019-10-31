@@ -1,8 +1,8 @@
 <!-- TC 1 -->
 <div id="hello_there">Hey there!</div>
 
-<!-- TC 2 -->
-<div name="program">I'm Pytholenium test.html</div>
+<!-- TC 2 --> <!-- TC 14 -->
+<div name="program" random_tag="anytag">I'm Pytholenium test.html</div>
 
 <!-- TC 3 -->
 <div>I'm only created for the unit tests</div>
@@ -19,18 +19,25 @@
 <!-- TC 7 -->
 <div class=someclass>You still reading this?</div>
 
-<!-- TC 8 -->
+<!-- TC 8 --> <!-- TC 11 --> <!-- TC 12 -->
 <div id=someidforcss>Nothing better to do eh?</div>
 
 <!-- TC 9 -->
-<p id="tc9_text"></p>
-<button id="buttonTC9" type="button" onclick=my_func()>
+<button id="buttonTC9" type="button" onclick=tc9_func()>
 Click me :)
 </button>
+<p id="tc9_text"></p>
 
+<!-- TC 10 -->
+<button id="buttonTC10" type="button" onclick=tc10_func()>
+Click me again :)
+</button>
+<p id="tc10_text"></p>
 
-
-
+<!-- TC 15 -->
+<div name="multiple" old_city="barcelona" new_city="madrid">You might see this is a strange html</div>
+<div name="multiple" old_city="barcelona" new_city="london">But don't worry</div>
+<div name="multiple" old_city="barcelona" new_city="buenos aires">Everything is under control ;)</div>
 
 
 
@@ -40,9 +47,14 @@ Click me :)
 	function sleep(ms){
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
-	// TC 9 - Waits for 1 second to display the Thanks! message after clicking
-	async function my_func(){
+	// TC 9 - Waits for 1 second to display the message after clicking
+	async function tc9_func(){
 		await sleep(1000);
 		document.getElementById('tc9_text').innerHTML = 'Thanks!';
+	}
+	// TC 10 - Waits for 3 second to display the message after clicking
+	async function tc10_func(){
+		await sleep(3000);
+		document.getElementById('tc10_text').innerHTML = '<div>Thanks again!</div>';
 	}
 </script>

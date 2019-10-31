@@ -86,5 +86,51 @@ class TestPytholenium(unittest.TestCase):
         self.assertEqual(text, "Thanks!")
 
 
+    #TC10 - Click button with wait function until div with text is displayed
+    def test_TC10 (self, driver=driver):
+        params = {"id": "buttonTC10"}
+        pl.do(driver=driver, params=params, action="click")
+        text_dict = {"xpath": '//*[@id="tc10_text"]/div'}
+        obtained_obj = pl.wait(driver=driver, params=text_dict)
+        text = obtained_obj.text
+        self.assertEqual(text, "Thanks again!")
+
+
+    #TC11 - Get element by id selector and text attribute
+    def test_TC11 (self, driver=driver):
+        params = {"id": "someidforcss", "text": "Nothing better to do eh?"}
+        text = pl.get(driver=driver, params=params).text
+        self.assertEqual(text, "Nothing better to do eh?")
+
+
+    #TC12 - Get element only by text attribute
+    def test_TC12 (self, driver=driver):
+        params = {"text": "Nothing better to do eh?"}
+        text = pl.get(driver=driver, params=params).text
+        self.assertEqual(text, "Nothing better to do eh?")
+
+
+    #TC13 - Get element only by tag_name_attribute attribute
+    def test_TC13 (self, driver=driver):
+        params = {"tag_name_attribute": "sometag"}
+        text = pl.get(driver=driver, params=params).text
+        self.assertEqual(text, "Ok?")
+
+
+    #TC14 - Get element by name and random tag attribute 
+    def test_TC14 (self, driver=driver):
+        params = {"name": "program", "random_tag": "anytag"}
+        text = pl.get(driver=driver, params=params).text
+        self.assertEqual(text, "I'm Pytholenium test.html")
+
+
+    #TC15 - Get element by name and multiple attributes
+    def test_TC15 (self, driver=driver):
+        params = {"name": "multiple", "old_city": "barcelona", "new_city": "london"}
+        text = pl.get(driver=driver, params=params).text
+        self.assertEqual(text, "But don't worry")
+
+
+
 if __name__ == '__main__':
     unittest.main()
