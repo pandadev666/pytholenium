@@ -131,6 +131,44 @@ class TestPytholenium(unittest.TestCase):
         self.assertEqual(text, "But don't worry")
 
 
+    #TC16 - Check an unchecked radio button
+    def test_TC16 (self, driver=driver):
+        params = {"name": "radio1"}
+        selected = pl.get(driver=driver, params=params).is_selected()
+        self.assertFalse(selected)
+        pl.wait_do(driver=driver, params=params, action="check")
+        selected = pl.get(driver=driver, params=params).is_selected()
+        self.assertTrue(selected)
+
+
+    #TC17 - Uncheck a checked radio button
+    def test_TC17 (self, driver=driver):
+        params = {"name": "radio2"}
+        selected = pl.get(driver=driver, params=params).is_selected()
+        self.assertTrue(selected)
+        pl.wait_do(driver=driver, params=params, action="un_check")
+        selected = pl.get(driver=driver, params=params).is_selected()
+        self.assertFalse(selected)
+
+
+    #TC18 - Uncheck an unchecked radio button - Validate error
+    def test_TC18 (self, driver=driver):
+        params = {"name": "radio1"}
+        try:
+            pl.wait_do(driver=driver, params=params, action="un_check")
+        except Warning as wr:
+            self.assertEqual(wr, '#pytholenium-Error005#. When performing action: "check" - Element specified is already checked')
+
+
+    #TC19 - Check a checked radio button - Validate error
+    def test_TC19 (self, driver=driver):
+        params = {"name": "radio2"}
+        try:
+            pl.wait_do(driver=driver, params=params, action="check")
+        except Warning as wr:
+            self.assertEqual(wr, '#pytholenium-Error005#. When performing action: "check" - Element specified is already unchecked')
+
+
 
 if __name__ == '__main__':
     unittest.main()
