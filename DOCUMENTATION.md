@@ -1,3 +1,5 @@
+# Pytholenium Documentation
+
 ## Selection types and usage
 
 pytholenium relies on finding element by selenium selectors and attribute selectors. pytholenium first performs a Selenium selectors search, and with those WebElements output, it applies the Attribute selectors search
@@ -17,7 +19,6 @@ Each one refers to the [actual Selenium selectors](https://selenium-python.readt
 Attribute selectors: 
 - text
 - tag_name_attribute
-- class_name_attribute
 - ... and any attribute you want to specify
 
 ***pytholenium only allows 0 or 1 Selenium selector, and any amount of Attribute selectors***
@@ -55,6 +56,23 @@ params = {"name": "multiple", "old_city": "barcelona", "new_city": "london"}
 print(pl.get(driver=driver, params=params).text)
 ```
 
+- Special Attribute selectors
+
+_tag_name_attribute_ is a "special" Attribute selectors, since tag_name is a Selenium's selector, but you might want to search for it as an attribute. In case of _text_ Attribute selector, it will compare the element's text
+
+```html
+<div>Oh man, you are really reading this documentation!</div>
+<sometag>I'm glad :)</sometag>
+```
+```python
+#By text
+params = {"text": "Oh man, you are really reading this documentation!"}
+print(pl.get(driver=driver, params=params).text)
+
+#By tag_name_attribute
+params = {"tag_name_attribute": "sometag"}
+print(pl.get(driver=driver, params=params).text)
+```
 
 
 ## Methods
