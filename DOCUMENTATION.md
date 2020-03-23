@@ -58,7 +58,7 @@ print(pl.get(driver=driver, params=params).text)
 
 - Special Attribute selectors
 
-_tag_name_attribute_ is a "special" Attribute selectors, since tag_name is a Selenium's selector, but you might want to search for it as an attribute. In case of _text_ Attribute selector, it will compare the element's text
+_tag_name_attribute_ is a "special" Attribute selector, since tag_name is a Selenium's selector, but you might want to search for it as an attribute. In case of _text_ Attribute selector, it will compare the element's text
 
 ```html
 <div>Oh man, you are really reading this documentation!</div>
