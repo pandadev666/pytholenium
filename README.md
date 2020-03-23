@@ -1,4 +1,4 @@
-# pytholenium
+# Pytholenium
 
 [![Build Status](https://travis-ci.org/ArgiesDario/pytholenium.svg?branch=master)](https://travis-ci.org/ArgiesDario/pytholenium)
 ![GitHub](https://img.shields.io/github/license/ArgiesDario/pytholenium.svg)
@@ -32,7 +32,7 @@ pl.wait_do (driver=driver, params={"name": "my_button", "some_attribute": "hares
 
 ## Documentation
 
-You can find more examples in the our [Documentation](https://github.com/ArgiesDario/pytholenium/blob/master/DOCUMENTATION)
+You can find more examples in the our [Documentation](https://github.com/ArgiesDario/pytholenium/blob/master/DOCUMENTATION.md)
 
 
 ## License
