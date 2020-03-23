@@ -15,7 +15,7 @@ To install pytholenium using pip just do: ```pip install pytholenium```
 
 Having the following html:
 
-```
+```html
 <button name="my_button" some_attribute="atenas">Click me</button>
 <button name="my_button" some_attribute="hares">Click me</button> <!-- You want to click this one -->
 <button name="other_button" some_attribute="hares">Click me</button>
@@ -25,7 +25,7 @@ Attempting to wait for element to be displayed, then selecting all name="my_butt
 
 Using pytholenium you can wait, get, do action, in a single line mixing selections types:
 
-```
+```python
 import pytholenium as pl
 pl.wait_do (driver=driver, params={"name": "my_button", "some_attribute": "hares"}, action="click")
 ```
