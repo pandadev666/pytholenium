@@ -37,4 +37,4 @@ You can find more examples in the our [Documentation](https://github.com/ArgiesD
 
 ## License
 
-This project is licensed under the GNU License - see the [LICENSE.md](https://github.com/ArgiesDario/pytholenium/blob/master/LICENSE) file for details
+This project is licensed under the GNU License - see the [LICENSE](https://github.com/ArgiesDario/pytholenium/blob/master/LICENSE) file for details
