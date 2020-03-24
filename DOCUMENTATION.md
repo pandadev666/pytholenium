@@ -90,3 +90,8 @@ You can see each docstring documentation by doing
 from pytholenium import pytholenium as pl
 help(pl)
 ```
+
+
+## Need more examples?
+
+Please check our [unit test](https://github.com/ArgiesDario/pytholenium/blob/master/pytholenium/unit_tests.py) and the [html file](https://github.com/ArgiesDario/pytholenium/blob/master/pytholenium/test_data/test.html). Each test is related to a html element with certain conditions, so you can see how pytholenium works.
