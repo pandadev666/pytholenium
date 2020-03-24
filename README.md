@@ -26,7 +26,7 @@ Attempting to wait for element to be displayed, then selecting all name="my_butt
 Using pytholenium you can wait, get, do action, in a single line mixing selections types:
 
 ```python
-import pytholenium as pl
+from pytholenium import pytholenium as pl
 pl.wait_do (driver=driver, params={"name": "my_button", "some_attribute": "hares"}, action="click")
 ```
 
