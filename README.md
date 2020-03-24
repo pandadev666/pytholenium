@@ -32,7 +32,7 @@ pl.wait_do (driver=driver, params={"name": "my_button", "some_attribute": "hares
 
 ## Documentation
 
-You can find more examples in the our [Documentation](https://github.com/ArgiesDario/pytholenium/blob/master/DOCUMENTATION.md)
+You can find more examples and details in our [Documentation](https://github.com/ArgiesDario/pytholenium/blob/master/DOCUMENTATION.md)
 
 
 ## License
