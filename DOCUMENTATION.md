@@ -87,6 +87,6 @@ Available methods are:
 You can see each docstring documentation by doing
 
 ```python
-import pytholenium as pl
+from pytholenium import pytholenium as pl
 help(pl)
 ```
