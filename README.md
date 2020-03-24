@@ -4,7 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/ArgiesDario/pytholenium.svg)
 [![Coverage Status](https://coveralls.io/repos/github/ArgiesDario/pytholenium/badge.svg?branch=master)](https://coveralls.io/github/ArgiesDario/pytholenium?branch=master)
 
-pytholenium is a simple but powerful python-selenium selector that allows you to combine selenium with attribute seleccions, combining multiple "wait/get/do" actions in a single line
+pytholenium is a simple but powerful python-selenium selector that allows you to combine selenium with attribute selections, combining multiple "wait/get/do" actions in a single line
 
 ## Getting Started
 
